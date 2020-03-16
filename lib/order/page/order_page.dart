@@ -21,7 +21,7 @@ class OrderPage extends StatefulWidget {
   _OrderPageState createState() => _OrderPageState();
 }
 
-class _OrderPageState extends State<OrderPage> with AutomaticKeepAliveClientMixin<OrderPage>, SingleTickerProviderStateMixin{
+class _OrderPageState extends State<OrderPage> with AutomaticKeepAliveClientMixin<OrderPage>, SingleTickerProviderStateMixin {
 
   @override
   bool get wantKeepAlive => true;
@@ -121,8 +121,8 @@ class _OrderPageState extends State<OrderPage> with AutomaticKeepAliveClientMixi
           floating: false, // 不随着滑动隐藏标题
           pinned: true, // 固定在顶部
           flexibleSpace: MyFlexibleSpaceBar(
-            background: isDark ? Container(height: 113.0, color: Colours.dark_bg_color,) : const LoadAssetImage('order/order_bg',
-              width: double.infinity,
+            background: isDark ? Container(height: 113.0, color: Colours.dark_bg_color,) : LoadAssetImage('order/order_bg',
+              width: MediaQuery.of(context).size.width,
               height: 113.0,
               fit: BoxFit.fill,
             ),

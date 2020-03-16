@@ -30,7 +30,7 @@ class PieChart extends StatefulWidget {
   _PieChartState createState() => _PieChartState();
 }
 
-class _PieChartState extends State<PieChart> with SingleTickerProviderStateMixin{
+class _PieChartState extends State<PieChart> with SingleTickerProviderStateMixin {
 
   int count;
   Animation<double> animation;
@@ -143,7 +143,7 @@ class PieChartPainter extends CustomPainter {
     if (pieData != null) {
       data.add(pieData);
     }
-    _mPaint = new Paint();
+    _mPaint = Paint();
     totalAngle = angleFactor * math.pi * 2;
   }
   
@@ -243,7 +243,7 @@ class PieChartPainter extends CustomPainter {
           readOnly: true,
           textDirection: TextDirection.ltr,
         ),
-        tags: const <SemanticsTag>{
+        tags: const <SemanticsTag> {
           SemanticsTag('pieChart-label'),
         },
       );

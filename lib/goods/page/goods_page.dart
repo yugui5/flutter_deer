@@ -19,7 +19,7 @@ class GoodsPage extends StatefulWidget {
   _GoodsPageState createState() => _GoodsPageState();
 }
 
-class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin{
+class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
   List<String> _sortList = ['全部商品', '个人护理', '饮料', '沐浴洗护', '厨房用具', '休闲食品', '生鲜水果', '酒水', '家庭清洁'];
   TabController _tabController;
@@ -34,7 +34,7 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(vsync: this, length: 3);
+    _tabController = TabController(vsync: this, length: 3);
   }
 
   @override
@@ -100,13 +100,12 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
                     return Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 8.0),
-                          child: Text(
-                            _sortList[sortIndex],
-                            style: TextStyles.textBold24,
-                          ),
+                        Gaps.hGap16,
+                        Text(
+                          _sortList[sortIndex],
+                          style: TextStyles.textBold24,
                         ),
+                        Gaps.hGap8,
                         LoadAssetImage('goods/expand', width: 16.0, height: 16.0, color: _iconColor,)
                       ],
                     );
@@ -115,10 +114,10 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
                 onTap: () => _showSortMenu(),
               ),
             ),
-            Gaps.vGap16,
-            Gaps.vGap8,
+            Gaps.vGap24,
             Container(
               // 隐藏点击效果
+              padding: EdgeInsets.only(left: 16.0),
               color: ThemeUtils.getBackgroundColor(context),
               child: TabBar(
                 onTap: (index) {
@@ -131,10 +130,10 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
                 controller: _tabController,
                 labelStyle: TextStyles.textBold18,
                 indicatorSize: TabBarIndicatorSize.label,
-                labelPadding: const EdgeInsets.only(left: 16.0),
+                labelPadding: const EdgeInsets.only(left: 0.0),
                 unselectedLabelColor: ThemeUtils.isDark(context) ? Colours.text_gray : Colours.text,
                 labelColor: Theme.of(context).primaryColor,
-                indicatorPadding: const EdgeInsets.only(left: 12.0, right: 36.0),
+                indicatorPadding: const EdgeInsets.only(right: 98.0 - 36.0),
                 tabs: <Widget>[
                   const _TabView('在售', 0),
                   const _TabView('待售', 1),
@@ -316,20 +315,23 @@ class _TabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<GoodsPageProvider>(
       builder: (_, provider, child) {
-        return  Tab(
-            child: SizedBox(
-              width: 78.0,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(tabName),
-                  Offstage(offstage: provider.goodsCountList[index] == 0 || provider.index != index, child: Padding(
+        return Tab(
+          child: SizedBox(
+            width: 98.0,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(tabName),
+                Offstage(
+                  offstage: provider.goodsCountList[index] == 0 || provider.index != index,
+                  child: Padding(
                     padding: const EdgeInsets.only(top: 1.0),
                     child: Text(' (${provider.goodsCountList[index]}件)', style: TextStyle(fontSize: Dimens.font_sp12)),
-                  )),
-                ],
-              ),
-            )
+                  )
+                ),
+              ],
+            ),
+          )
         );
       },
     );

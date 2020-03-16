@@ -11,8 +11,8 @@ if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
-def flutterVersionCode = '9'
-def flutterVersionName = '1.0.8'
+def flutterVersionCode = '10'
+def flutterVersionName = '1.0.9'
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -56,6 +56,10 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
+            // https://github.com/flutter/flutter/issues/47462  #48015
+            shrinkResources false
+            zipAlignEnabled false
+            minifyEnabled false
         }
     }
 }

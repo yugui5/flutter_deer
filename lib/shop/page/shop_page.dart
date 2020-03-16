@@ -16,11 +16,19 @@ import 'package:provider/provider.dart';
 
 /// design/6店铺-账户/index.html#artboard0
 class ShopPage extends StatefulWidget {
+
+  const ShopPage({
+    Key key,
+    this.isAccessibilityTest: false,
+  }) : super(key : key);
+
+  final bool isAccessibilityTest;
+  
   @override
   ShopPageState createState() => ShopPageState();
 }
 
-class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with AutomaticKeepAliveClientMixin<ShopPage>{
+class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with AutomaticKeepAliveClientMixin<ShopPage> {
   
   var _menuTitle = ['账户流水', '资金管理', '提现账号'];
   var _menuImage = ['zhls', 'zjgl', 'txzh'];
@@ -110,11 +118,9 @@ class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with Auto
                   );
                 },
               ),
-              Gaps.vGap12,
-              Gaps.vGap12,
+              Gaps.vGap24,
               Container(height: 0.6, width: double.infinity, margin: const EdgeInsets.only(left: 16.0), child: Gaps.line,),
-              Gaps.vGap12,
-              Gaps.vGap12,
+              Gaps.vGap24,
               const MergeSemantics(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -161,8 +167,7 @@ class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with Auto
                 ),
               ),
               Container(height: 0.6, width: double.infinity, margin: const EdgeInsets.only(left: 16.0), child: Gaps.line,),
-              Gaps.vGap12,
-              Gaps.vGap12,
+              Gaps.vGap24,
               const MergeSemantics(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
