@@ -1,20 +1,19 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_deer/mvp/base_presenter.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
 import 'package:flutter_deer/util/toast.dart';
 import 'package:flutter_deer/util/utils.dart';
 import 'package:flutter_deer/widgets/progress_dialog.dart';
-
-import 'base_page_presenter.dart';
 import 'mvps.dart';
 
-abstract class BasePageState<T extends StatefulWidget, V extends BasePagePresenter> extends State<T> implements IMvpView {
+abstract class BasePageState<T extends StatefulWidget, V extends BasePresenter> extends State<T> implements IMvpView {
 
   V presenter;
   
   BasePageState() {
     presenter = createPresenter();
-    presenter.view = this;
+    presenter?.view = this;
   }
   
   V createPresenter();
@@ -87,7 +86,7 @@ abstract class BasePageState<T extends StatefulWidget, V extends BasePagePresent
   @override
   void didUpdateWidget(T oldWidget) {
     super.didUpdateWidget(oldWidget);
-    didUpdateWidgets<T>(oldWidget);
+    presenter?.didUpdateWidgets<T>(oldWidget);
   }
 
   @override
@@ -95,8 +94,5 @@ abstract class BasePageState<T extends StatefulWidget, V extends BasePagePresent
     super.initState();
     presenter?.initState();
   }
-
-  void didUpdateWidgets<W>(W oldWidget) {
-    presenter?.didUpdateWidgets<W>(oldWidget);
-  }
+  
 }
